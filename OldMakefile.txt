@@ -1,0 +1,15 @@
+CC = gcc
+CFLAGS = -lws2_32
+OBJS = server.o clientThread.o database.o
+
+
+# The command to compile client.c using the makefile is: make client
+# gcc -o client.exe client.c -~
+client: client.c
+	$(CC) -o client.exe client.c $(CFLAGS)
+
+# the commands for compiling server.c must also link both clientThread.h and database.h using the makefile
+# The command to compile server.c using the makefile is: make server
+# gcc -o server.exe server.c -lws2_32
+server: $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) -o server
